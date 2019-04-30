@@ -3,4 +3,28 @@
     body {
         padding-top: 50px;
     }
+
+}
+
+* {
+    list-style-type: none;
+}
+
+#logo-landing-page{
+    width: 10%;
+    height: auto;
+}
+    #logo-landing-page:hover {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+.content {
+    margin-left:5rem;
+    text-align: left;
+}
+
+.index-table {
+    margin-top: 3rem;
 }

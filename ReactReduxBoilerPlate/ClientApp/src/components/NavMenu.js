@@ -5,31 +5,52 @@ import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
 
 export default props => (
-  <Navbar inverse fixedTop fluid collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <Link to={'/'}>ReactReduxBoilerPlate</Link>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav>
-        <LinkContainer to={'/'} exact>
-          <NavItem>
-            <Glyphicon glyph='home' /> Home
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/counter'}>
-          <NavItem>
-            <Glyphicon glyph='education' /> Counter
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/fetchdata'}>
-          <NavItem>
-            <Glyphicon glyph='th-list' /> Fetch data
-          </NavItem>
-        </LinkContainer>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+    <nav className="navbar navbar-expand-lg navbar-light">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <LinkContainer to={'/'} exact>
+                        <NavItem>
+                            Home
+                         </NavItem>
+                    </LinkContainer>
+                </li>
+                <li className="nav-item">
+                    <LinkContainer to={'/tables'}>
+                        <NavItem>
+                            Tables
+                        </NavItem>
+                    </LinkContainer>
+                </li>
+                <li className="nav-item">
+                    <LinkContainer to={'/forms'}>
+                        <NavItem>
+                            Forms
+                        </NavItem>
+                    </LinkContainer>
+                </li>
+                <li className="nav-item">
+                    <LinkContainer to={'/visualizations'}>
+                        <NavItem>
+                            Visualizations
+                        </NavItem>
+                    </LinkContainer>
+                </li>
+                <li className="nav-item">
+                    <LinkContainer to={'/users/:id'}>
+                        <NavItem>
+                            Me
+                        </NavItem>
+                    </LinkContainer>
+                </li>
+                <li className="nav-item">
+                    <LinkContainer to={'/signin'}>
+                        <NavItem>
+                            Sign In
+                        </NavItem>
+                    </LinkContainer>
+                </li>
+            </ul>
+        </div>
+    </nav>
 );
