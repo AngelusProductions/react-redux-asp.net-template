@@ -8,13 +8,13 @@ const Form = props => (
         <div className="form-row">
             <div className="col-md-4 mb-3">
                 <label htmlFor="validationServer01">First name</label>
-                <input type="text" className="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required />
+                <input type="text" className="form-control is-valid" id="validationServer01" placeholder="First name" required />
                 <div className="valid-feedback">Looks good!</div>
             </div>
 
             <div className="col-md-4 mb-3">
                 <label htmlFor="validationServer02">Last name</label>
-                <input type="text" className="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required />
+                <input type="text" className="form-control is-valid" id="validationServer02" placeholder="Last name" required />
                 <div className="valid-feedback">Looks good!</div>
             </div>
 

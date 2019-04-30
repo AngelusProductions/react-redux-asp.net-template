@@ -1,4 +1,10 @@
-﻿﻿.navbar li .glyphicon {
+﻿﻿
+
+.index-nav-items {
+    margin-top: 1rem;
+}
+
+.navbar li .glyphicon {
     margin-right: 10px;
 }
 

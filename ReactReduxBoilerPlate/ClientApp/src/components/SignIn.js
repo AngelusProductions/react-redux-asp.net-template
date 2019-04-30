@@ -16,7 +16,7 @@ const SignIn = props => (
             </form>
 
             <div id="formFooter">
-                <a className="underlineHover" href="#">Forgot Password?</a>
+                <a className="underlineHover" href="https://login.yahoo.com/">Forgot Password?</a>
             </div>
 
         </div>
