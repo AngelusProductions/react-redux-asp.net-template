@@ -1,7 +1,5 @@
 ﻿import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../store/Counter';
 
 const data = [
     {
@@ -75,7 +73,4 @@ const Table = props => (
     </div>
 );
 
-export default connect(
-    state => state.counter,
-    dispatch => bindActionCreators(actionCreators, dispatch)
-)(Table);
+export default connect()(Table);
