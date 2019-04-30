@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
-import './SignIn.css';
+import '../css/SignIn.css';
 
 const SignIn = props => (
     <div className="wrapper fadeInDown">
