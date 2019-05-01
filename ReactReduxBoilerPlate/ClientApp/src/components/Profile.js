@@ -7,7 +7,7 @@ const Profile = props => (
         <img 
             src="https://avatars0.githubusercontent.com/u/43078660?s=460&v=4" 
             className="profile-photo"
-            alt="profile photo" 
+            alt="profile" 
         />
         <div className="profile-text">
             <h1>Angelus Productions</h1>

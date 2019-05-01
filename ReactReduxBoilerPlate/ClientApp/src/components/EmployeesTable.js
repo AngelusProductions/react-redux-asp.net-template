@@ -15,6 +15,7 @@ class EmployeesTable extends Component {
             catchPhrase: "",
             employees: []
         }
+        this.renderNewEmployeeInputs = this.renderNewEmployeeInputs.bind(this)
     }
 
     componentWillMount() { this.props.requestEmployees() }
@@ -31,18 +32,6 @@ class EmployeesTable extends Component {
         this.props.requestEmployees()
     }
 
-    renderEmployee(employee) {
-        return (
-            <tr key={employee.id}>
-                <td>{employee.name}</td>
-                <td>{employee.job}</td>
-                <td>{employee.location}</td>
-                <td>{employee.email}</td>
-                <td>{employee.catchPhrase}</td>
-            </tr>
-        )
-    }
-
     renderEmployeesTable(props) {
         return (
             <table className="table index-table">
@@ -56,10 +45,46 @@ class EmployeesTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.employees.map(employee => this.renderEmployee(employee))}
+                    {this.props.employees.map(employee => this.renderEmployee(employee))}
                 </tbody>
             </table>
             )
+    }
+
+    renderEmployee(employee) {
+        return (
+            <tr key={employee.id}>
+                <td>{employee.name}</td>
+                <td>{employee.job}</td>
+                <td>{employee.location}</td>
+                <td>{employee.email}</td>
+                <td>{employee.catchPhrase}</td>
+            </tr>
+        )
+    }
+
+
+    renderNewEmployeeInputs(props) {
+        if (props.employees.length === 0) { return <tr/> }
+        const keyArray = Object.keys(props.employees[0])
+        keyArray.shift()
+        const output = keyArray.map( key => {
+            const title = key.charAt(0).toUpperCase() + key.slice(1, key.length)
+            return (
+                <tr key={key}>
+                    <td>{title}:</td>
+                    <td>
+                        <input
+                            type="text"
+                            id={`employee${title}`}
+                            value={this.state.key}
+                            onChange={(e) => this.setState({ [key]: e.target.value })}
+                        />
+                    </td>
+                </tr>
+            )
+        })
+        return output
     }
 
     render() {
@@ -68,64 +93,9 @@ class EmployeesTable extends Component {
                 <h1>NESS Employees</h1>
                 <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
                 {this.renderEmployeesTable(this.props)}
-
                 <table id="employees-table-form">
                     <tbody>
-                        <tr>
-                            <td>Name:</td>
-                            <td>
-                                <input
-                                    id="employeeName"
-                                    type="text"
-                                    value={this.state.name}
-                                    onChange={(e) => this.setState({ name: e.target.value })}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Job:</td>
-                            <td>
-                                <input
-                                    id="employeeJob"
-                                    type="text"
-                                    value={this.state.job}
-                                    onChange={(e) => this.setState({ job: e.target.value })}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Location:</td>
-                            <td>
-                                <input
-                                    id="employeeLocation"
-                                    type="text"
-                                    value={this.state.location}
-                                    onChange={(e) => this.setState({ location: e.target.value })}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td>
-                                <input
-                                    id="employeeEmail"
-                                    type="text"
-                                    value={this.state.email}
-                                    onChange={(e) => this.setState({ email: e.target.value })}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Catch Phrase:</td>
-                            <td>
-                                <input
-                                    id="employeeCatchPhrase"
-                                    type="text"
-                                    value={this.state.catchPhrase}
-                                    onChange={(e) => this.setState({ catchPhrase: e.target.value })}
-                                />
-                            </td>
-                        </tr>
+                        {this.renderNewEmployeeInputs(this.props)}
                         <tr>
                             <td>
                                 <button onClick={this.addEmployee.bind(this)} id="employees-table-form-button">
