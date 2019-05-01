@@ -1,17 +1,17 @@
-﻿import React, { Component } from 'react';
-import { connect } from 'react-redux';
+﻿import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import Table from '../components/Table'
+import EmployeesTable from '../components/EmployeesTable'
 
 class TablesContainer extends Component {
 
     render() {
         return (
-            <div>
-                <Table />
-            </div>
-        );
+            <React.Fragment>
+                <EmployeesTable />
+            </React.Fragment>
+        )
     }
 }
 
-export default connect()(TablesContainer);
+export default connect()(TablesContainer)

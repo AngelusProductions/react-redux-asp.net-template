@@ -1,5 +1,5 @@
-﻿import React, { Component } from 'react';
-import { connect } from 'react-redux';
+﻿import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Visualization from '../components/Visualization'
 
@@ -7,11 +7,11 @@ class VisualizationsContainer extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <Visualization />
-            </div>
-        );
+            </React.Fragment>
+        )
     }
 }
 
-export default connect()(VisualizationsContainer);
+export default connect()(VisualizationsContainer)

@@ -1,13 +1,13 @@
-﻿import React from 'react';
-import { Route } from 'react-router';
-import Layout from './components/Layout';
+﻿import React from 'react'
+import { Route } from 'react-router'
+import Layout from './components/Layout'
 
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/LandingPage'
 import FormsContainer from './containers/FormsContainer'
 import TablesContainer from './containers/TablesContainer'
 import VisualizationsContainer from './containers/VisualizationsContainer'
 import Form from './components/Form'
-import Table from './components/Table'
+import Table from './components/EmployeesTable'
 import Visualization from './components/Visualization'
 import SignIn from './components/SignIn'
 import Profile from './components/Profile'
@@ -29,4 +29,4 @@ export default () => (
 
     <Route path='/users/:id' component={Profile} /> 
   </Layout>
-);
+)

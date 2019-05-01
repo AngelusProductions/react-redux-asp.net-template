@@ -1,1 +1,0 @@
-﻿const requestEmployeesType = 'REQUEST_EMPLOYEES'
