@@ -1,7 +1,7 @@
-﻿import React from 'react';
-import { NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import '../css/NavMenu.css';
+﻿import React from 'react'
+import { NavItem } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import '../css/NavMenu.css'
 
 export default props => (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -52,4 +52,4 @@ export default props => (
             </div>
         </div>
     </nav>
-);
+)

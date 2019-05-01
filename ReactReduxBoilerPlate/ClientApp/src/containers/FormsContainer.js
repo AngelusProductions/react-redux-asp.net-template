@@ -1,5 +1,5 @@
-﻿import React, { Component } from 'react';
-import { connect } from 'react-redux';
+﻿import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Form from '../components/Form'
 
@@ -7,11 +7,11 @@ class FormsContainer extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <Form />
-            </div>
-        );
+            </React.Fragment>
+        )
     }
 }
 
-export default connect()(FormsContainer);
+export default connect()(FormsContainer)

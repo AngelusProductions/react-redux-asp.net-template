@@ -1,6 +1,6 @@
-﻿import React from 'react';
-import { connect } from 'react-redux';
-import '../css/SignIn.css';
+﻿import React from 'react'
+import { connect } from 'react-redux'
+import '../css/SignIn.css'
 
 const SignIn = props => (
     <div className="wrapper fadeInDown">
@@ -23,5 +23,4 @@ const SignIn = props => (
     </div>
 )
 
-
-export default connect()(SignIn);
+export default connect()(SignIn)

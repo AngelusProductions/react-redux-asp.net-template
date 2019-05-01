@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { connect } from 'react-redux';
+﻿import React from 'react'
+import { connect } from 'react-redux'
 
 const Form = props => (
     <form>
@@ -60,6 +60,6 @@ const Form = props => (
 
         <button className="btn btn-primary" type="submit">Submit Form</button>
     </form>
-);
+)
 
-export default connect()(Form);
+export default connect()(Form)

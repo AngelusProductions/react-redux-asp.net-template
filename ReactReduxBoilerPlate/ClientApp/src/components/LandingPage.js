@@ -1,12 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 const LandingPage = () => {
-
-
-
     return (
-        <div>
+        <React.Fragment>
             <div className="content">
                 <h1><br />NESS Web App Studio</h1>
                 <p><br /><em>Welcome to this little cheat sheet to get web-based applications up and running</em>.<br/><br/>What's in here?</p>
@@ -25,8 +22,8 @@ const LandingPage = () => {
                  <p>Feel free to add to this, but make sure it all works first.<br />Let this be our <em>one source of truth</em>.</p>
                 <img src="https://s3.amazonaws.com/ness-production/NESS_Logo.PNG" id="logo-landing-page" alt="ness"/>
            </div>
-      </div>
+        </React.Fragment>
     )
 };
 
-export default connect()(LandingPage);
+export default connect()(LandingPage)
