@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import '../css/Tables.css'
 
 import EmployeesTable from '../components/EmployeesTable'
 

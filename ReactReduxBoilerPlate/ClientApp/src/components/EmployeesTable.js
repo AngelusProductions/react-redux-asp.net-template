@@ -47,13 +47,13 @@ class EmployeesTable extends Component {
         return (
             <table className="table index-table">
                 <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Location</th>
-                    <th>Email</th>
-                    <th>Catch Phrase</th>
-                </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Job</th>
+                        <th>Location</th>
+                        <th>Email</th>
+                        <th>Catch Phrase</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {props.employees.map(employee => this.renderEmployee(employee))}
@@ -69,7 +69,7 @@ class EmployeesTable extends Component {
                 <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
                 {this.renderEmployeesTable(this.props)}
 
-                <table>
+                <table id="employees-table-form">
                     <tbody>
                         <tr>
                             <td>Name:</td>
@@ -126,7 +126,13 @@ class EmployeesTable extends Component {
                                 />
                             </td>
                         </tr>
-                        <tr><td><button onClick={this.addEmployee.bind(this)}>Add</button></td></tr>
+                        <tr>
+                            <td>
+                                <button onClick={this.addEmployee.bind(this)} id="employees-table-form-button">
+                                    Add
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </React.Fragment>
