@@ -38,7 +38,7 @@ export default props => (
                 <div className="nav-item">
                     <LinkContainer to={'/users/:id'}>
                         <NavItem>
-                            Me
+                            Profile
                         </NavItem>
                     </LinkContainer>
                 </div>
