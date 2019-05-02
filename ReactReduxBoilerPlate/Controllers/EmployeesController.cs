@@ -4,39 +4,139 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+using System.Text;
+using Newtonsoft.Json.Linq;
+using Remotion.Linq.Parsing.Structure.IntermediateModel;
 
 namespace ReactReduxBoilerPlate.Controllers
 {
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        private static List<Employee> Employees = new List<Employee>()
+        private static DataTable MyTable()
         {
-            new Employee() { Id = 1, Name = "Alex", Job = "Wiz Kid", Location = "Siberia", Email = "alexb@nesurvey.com", CatchPhrase = "OK, here's what I will say..." },
-            new Employee() { Id = 2, Name = "Ben", Job = "Codemaster Lv. 11", Location = "Black Sea", Email = "benc@nesurvey.com", CatchPhrase = "(Bizarre comment no one know how to respond to)"},
-            new Employee() { Id = 3, Name = "Corey", Job = "Codemaster Lv. 12", Location = "Gulag", Email = "coreya@nesurvey.com", CatchPhrase = "I'm a dude, he's a dude, she's a dude, and we're all dudes, yeah"},
-            new Employee() { Id = 4, Name = "John", Job = "Boss Man", Location = "Everywhere", Email = "johnr@nesurvey.com", CatchPhrase = "Hey I'm from LA, look at me"},
-            new Employee() { Id = 5, Name = "Omkar", Job = "Office Beard Reserve", Location = "Black Sea", Email = "omkarp@nesurvey.com", CatchPhrase = "No, don't do that again"},
-            new Employee() { Id = 6, Name = "Will", Job = "Q", Location = "Black Sea", Email = "willb@nesurvey.com", CatchPhrase = "Vape lyfe"}
-        };
+            DataTable dataTable = new DataTable();
+            const string connString = "Data Source=turtle;" +
+                                      "Initial Catalog=Playground; " +
+                                      "Integrated Security=False;" +
+                                      "User ID=sa;" +
+                                      "Password=The leatherback is the largest species of sea turtle. Measuring 2–3 meters (6–9 ft) in length";
+            const string query = "SELECT * FROM Employees";
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dataTable);
+            conn.Close();
+            da.Dispose();
+            return dataTable;
+        }
+
+        public static string Jsonify(DataTable table)
+        {
+            var jsonString = new StringBuilder();
+            if (table.Rows.Count > 0)
+            {
+                jsonString.Append("[");
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    jsonString.Append("{");
+                    for (int j = 0; j < table.Columns.Count; j++)
+                    {
+                        string columnName = table.Columns[j].ColumnName.ToString();
+                        string columnNameCamelCased = columnName.Substring(0, 1).ToLower() + columnName.Substring(1);
+                        if (j < table.Columns.Count - 1)
+                        {
+                            
+                            jsonString.Append("\"" + columnNameCamelCased + "\":" + "\"" + table.Rows[i][j].ToString() + "\",");
+                        }
+                        else if (j == table.Columns.Count - 1)
+                        {
+                            jsonString.Append("\"" + columnNameCamelCased + "\":" + "\"" + table.Rows[i][j].ToString() + "\"");
+                        }
+                    }
+                    if (i == table.Rows.Count - 1)
+                    {
+                        jsonString.Append("}");
+                    }
+                    else
+                    {
+                        jsonString.Append("},");
+                    }
+                }
+                jsonString.Append("]");
+            }
+            return jsonString.ToString();
+        }
 
         [HttpGet]
-        public List<Employee> GetEmployees()
-        {
-            return Employees;
+        public string GetEmployees()
+        {   
+            return Jsonify(MyTable());
         }
 
-        [HttpGet("[action]/{id}")]
-        public Employee GetEmployee(long id)
-        {
-            return Employees.Find((e) => e.Id == id);
-        }
+        //[HttpGet("[action]/{id}")]
+        //public string GetEmployee(long id)
+        //{
+        //    string searchExpression = $"ID = ${id}";
+        //    DataRow foundRow = MyTable().Select(searchExpression)[0];
+        //    Debugger.Break();
+        //    //return Jsonify(foundRow.ToString());
+        //}
 
         [HttpPost]
-        public IActionResult AddEmployee([FromBody]Employee datum)
-        {
-            datum.Id = Employees.Count + 1;
-            Employees.Add(datum);
+        public IActionResult AddEmployee([FromBody]JObject datum)
+        {   
+            JObject json = JObject.Parse(datum);
+            Debugger.Break();
+
+            //datum.Id = MyTable().Columns.Count + 1;
+            //DataTable dataTable = new DataTable();
+            //const string connString = "Data Source=turtle;" +
+            //                          "Initial Catalog=Playground; " +
+            //                          "Integrated Security=False;" +
+            //                          "User ID=sa;" +
+            //                          "Password=The leatherback is the largest species of sea turtle. Measuring 2–3 meters (6–9 ft) in length";
+            //string query = "INSERT INTO Employees (";
+            //var i = 0;
+            //Array properties = datum.GetType().GetProperties();
+            //foreach (var property in datum.GetType().GetProperties())
+            //{
+            //    if (i < properties.Length)
+            //    {
+            //        query += $"{property.Name}, ";
+            //    }
+            //    else
+            //    {
+            //        query += $"{property.Name}) VALUES (";
+            //    }
+            //}
+            //var j = 0;
+            //Array values = datum.GetType().GetFields();
+            //Debugger.Break();
+            //foreach (var value in values)
+            //{
+            //    if (i < values.Length)
+            //    {
+            //        query += $"\'${value.ToString()}\', ";
+            //    }
+            //    else
+            //    {
+            //        query += $"\'${value.ToString()}\');";
+            //    }
+            //}
+            //Debugger.Break();
+            //foreach (var attribute in datum.)
+            //SqlConnection conn = new SqlConnection(connString);
+            //SqlCommand cmd = new SqlCommand(query, conn);
+            //conn.Open();
+            //SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //da.Fill(dataTable);
+            //conn.Close();
+            //da.Dispose();
             return Ok(new
             {
                 success = true,
@@ -44,15 +144,14 @@ namespace ReactReduxBoilerPlate.Controllers
             });
         }
 
-        public class Employee
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Job { get; set; }
-            public string Location { get; set; }
-            public string Email { get; set; }
-            public string CatchPhrase { get; set; }
-        }
-
+        //public class Employee
+        //{
+        //    public int Id { get; set; }
+        //    public string Name { get; set; }
+        //    public string Job { get; set; }
+        //    public string Location { get; set; }
+        //    public string Email { get; set; }
+        //    public string CatchPhrase { get; set; }
+        //}
     }
 }
