@@ -13,7 +13,7 @@ export const actionCreators = {
     requestEmployees: () => async (dispatch, getState) => {
         dispatch({ type: requestEmployeesType })
         const url = `api/Employees`
-        const response = await fetch(url)
+        const response = await fetch(url) 
         const employeesList = await response.json()
         dispatch({ type: receiveEmployeesType, employeesList })
     },

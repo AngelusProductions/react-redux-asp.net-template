@@ -33,6 +33,7 @@ class EmployeesTable extends Component {
     }
 
     renderEmployeesTable(props) {
+        debugger
         return (
             <table className="table index-table">
                 <thead>
